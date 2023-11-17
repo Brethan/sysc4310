@@ -9,7 +9,7 @@ module risc_iunit_tb;
 	reg rst_n;
 	reg [12:0] instruction;
 	wire [12:0] ir;
-	wire [5:0] pc;
+	wire [4:0] pc = 5'b0;
 
 	
 	
