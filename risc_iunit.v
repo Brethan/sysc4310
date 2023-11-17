@@ -31,4 +31,5 @@ module risc_iunit (clk, rst_n, instruction, pc, ir);
 		ir <= instruction;
 		pc <= (pc + 1) % 32;
   end
+  end
 endmodule
