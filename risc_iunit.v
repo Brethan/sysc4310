@@ -9,7 +9,7 @@ module risc_iunit (clk, rst_n, instruction, pc, ir);
 	input clk, rst_n;
 	input [12:0] instruction;
 
-	output reg [4:0] pc;
+	output reg [4:0] pc = 5'b0;
 	output reg [12:0] ir;
   
   
