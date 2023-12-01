@@ -137,7 +137,7 @@ module risc_eunit (
 	assign rslt_not = !oprnd_a;
 	
 	
-	always @ (opcode or oprnd_a or rslt_and or rslt_or 
+	always @ (opcode or oprnd_a or oprnd_b or rslt_and or rslt_or 
 		or rslt_xor or rslt_shr or rslt_shl or rslt_rol 
 		or rslt_ror or rslt_sum ) begin
 		case (opcode)
