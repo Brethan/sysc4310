@@ -5,7 +5,7 @@ wire clk, rst_n, dmenbl, rdwr;
 wire [12:0] instruction;
 wire [4:0] pc;
 wire [3:0] dmaddr;
-wire [7:0] dcdatain, dcdataout;
+wire [7:0] dmdatain, dmdataout;
 
 risc_imemory inst1 (
 .pc(pc),
@@ -15,9 +15,9 @@ risc_imemory inst1 (
 risc_dmemory inst2 ( 
 .dmenbl(dmenbl),
 .dmaddr(dmaddr),
-.dcdatain(dcdatain),
+.dmdatain(dmdatain),
 .rdwr(rdwr),
-.dcdataout(dcdataout)
+.dmdataout(dmdataout)
 );
 
 risc_cpu_top1 inst3 (
@@ -27,8 +27,8 @@ risc_cpu_top1 inst3 (
 .instruction(instruction),
 .dmenbl(dmenbl),
 .dmaddr(dmaddr),
-.dcdatain(dcdatain),
+.dmdatain(dmdatain),
 .rdwr(rdwr),
-.dcdataout(dcdataout)
+.dmdataout(dmdataout)
 );
 endmodule

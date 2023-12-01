@@ -78,8 +78,11 @@ end
 
 //fillout2: instantiate the IU
 risc_iunit inst1 (
-	.clk(clk), .rst_n(rst_n), .instruction(instruction), .pc(pc), .ir(ir)
-
+	.clk(clk), 
+	.rst_n(rst_n), 
+	.instruction(instruction), 
+	.pc(pc), 
+	.ir(ir)
 );
 
 endmodule

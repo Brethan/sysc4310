@@ -86,13 +86,13 @@ module risc_regfile (
 	if (~rst_n) begin 
 	   //fillout5: reset all registers
 		regfile0 <= 8'h00;
-		regfile1 <= 8'h22;
-		regfile2 <= 8'h44;
-		regfile3 <= 8'h66;
-		regfile4 <= 8'h88;
-		regfile5 <= 8'haa;
-		regfile6 <= 8'hcc;
-		regfile7 <= 8'hff;
+		regfile1 <= 8'h00;
+		regfile2 <= 8'h00;
+		regfile3 <= 8'h00;
+		regfile4 <= 8'h00;
+		regfile5 <= 8'h00;
+		regfile6 <= 8'h00;
+		regfile7 <= 8'h00;
 		
 	end else begin 
 	// fillout6: when enable signal is activated pass in the data to a specific register
