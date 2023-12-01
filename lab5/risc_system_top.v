@@ -20,7 +20,7 @@ risc_dmemory inst2 (
 .dmdataout(dmdataout)
 );
 
-risc_cpu_top1 inst3 (
+risc_cpu_top1 risc (
 .clk(clk),
 .rst_n(rst_n),
 .pc(pc),

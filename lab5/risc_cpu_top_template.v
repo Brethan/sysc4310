@@ -30,6 +30,7 @@ wire [2:0] dst;
 // Execution Unit Wires
 wire [2:0] dstin;
 assign dstin = dst;
+wire[ 3:0] dmaddr_o;
 wire [3:0] dmaddrin;
 assign dmaddrin = dmaddr;
 wire [7:0] oprnd_a;
@@ -37,6 +38,7 @@ wire [7:0] oprnd_b;
 wire [7:0] rslt;
 wire load_op;
 wire reg_wr_vld;
+wire [2:0] dst_o;
 
 
 // Regfile Wire
@@ -49,7 +51,7 @@ assign opndb_addr = opndb;
 
 
 // fillout2: instantiate iunit
-risc_iunit inst1 (
+risc_iunit iunit (
 	.clk(clk), 
 	.rst_n(rst_n), 
 	.instruction(instruction), 
@@ -58,22 +60,22 @@ risc_iunit inst1 (
 );
 
 // fillout3: instantiate decode unit
-risc_decode inst2 (
+risc_decode decode (
 	.clk(clk), .rst_n(rst_n), .instr(instr),
 	.dmaddr(dmaddr), .opnda(opnda), .opndb(opndb),
 	.dst(dst), .opcode(opcode)
 );
 
 //fillout4
-risc_eunit inst3 (
+risc_eunit eunit (
 	.clk(clk), .rst_n(rst_n), .opcode(opcode), .dmaddrin(dmaddrin),
 	.oprnd_a(oprnd_a), .oprnd_b(oprnd_b), .dstin(dstin), .dmenbl(dmenbl),
-	.rdwr(rdwr), .dmaddr(dmaddr), .rslt(rslt), .dst(dst), 
+	.rdwr(rdwr), .dmaddr_o(dmaddr_o), .rslt(rslt), .dst_o(dst_o), 
 	.reg_wr_vld(reg_wr_vld), .dmdatain(dmdatain), .load_op(load_op)
 );
 
 // fillout5
-risc_regfile inst4 (
+risc_regfile regfile (
 	.clk(clk), .rst_n(rst_n), .reg_wr_vld(reg_wr_vld),
 	.load_op(load_op), .rslt(rslt), .dst(dst), .opnda_addr(opnda_addr),
 	.opndb_addr(opndb_addr), .dmdataout(dmdataout), .oprnd_a(oprnd_a),

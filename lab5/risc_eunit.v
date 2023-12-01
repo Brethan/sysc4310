@@ -18,9 +18,9 @@ module risc_eunit (
 	input wire [2:0] dstin,
 	output reg dmenbl, // control signal
 	output wire rdwr, // control signal
-	output reg [3:0] dmaddr, 
+	output reg [3:0] dmaddr_o, 
 	output reg [7:0] rslt, 
-	output reg [2:0] dst, // address of destination register
+	output reg [2:0] dst_o, // address of destination register
 	output wire reg_wr_vld, // control signal
 	output wire [7:0] dmdatain, 
 	output wire load_op // control signal
@@ -79,13 +79,13 @@ module risc_eunit (
 	always @ (posedge clk or negedge rst_n) begin
 		if (~rst_n) begin
 			rslt <= 8'h00;
-			dmaddr <= 4'h0;
+			dmaddr_o <= 4'h0;
 			opcode_out <= 4'h0;
-			dst <= 3'b000;
+			dst_o <= 3'b000;
 	  	end else begin
 			rslt <= rslt_i;
-			dst <= dstin;
-			dmaddr <= dmaddrin;
+			dst_o <= dstin;
+			dmaddr_o <= dmaddrin;
 			opcode_out <= opcode;
 	  	end
     end
