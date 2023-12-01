@@ -101,6 +101,7 @@ initial begin
 	opndb_addr = 3'b011; //rslt = 66h
 	dstin = opnda_addr;
 
+	$display("Bruh what is wrong with this xor: %h", inst2.regfile4 ^ inst2.regfile3);
 	@ (negedge clk)
 	$display ("xor: regfile4 = %h, regfile3 = %h, xor, rslt = %h",
 		inst2.regfile4, inst2.regfile3, rslt);
