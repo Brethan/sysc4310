@@ -15,7 +15,7 @@ module risc_system_top_tb;
 		#640 $stop; //32 instr times 20 ns per clk cycle
 	end
 
-	risc_system_top inst1 (
+	risc_system_top risc_cpu (
 		.clk(clk),
 		.rst_n(rst_n)
 	);
