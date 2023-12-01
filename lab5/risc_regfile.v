@@ -18,7 +18,7 @@ module risc_regfile (
 	input wire reg_wr_vld, 
 	input wire load_op,
 	input wire [7:0] rslt,
-	input wire [2:0] dst_o;
+	input wire [2:0] dst_o,
 	
 	// From Decode Unit
     input wire [2:0] dst,
