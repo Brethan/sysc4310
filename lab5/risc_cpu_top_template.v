@@ -77,7 +77,7 @@ risc_eunit eunit (
 // fillout5
 risc_regfile regfile (
 	.clk(clk), .rst_n(rst_n), .reg_wr_vld(reg_wr_vld),
-	.load_op(load_op), .rslt(rslt), .dst(dst), .opnda_addr(opnda_addr),
+	.load_op(load_op), .rslt(rslt), .dst(dst_o), .opnda_addr(opnda_addr),
 	.opndb_addr(opndb_addr), .dmdataout(dmdataout), .oprnd_a(oprnd_a),
 	.oprnd_b(oprnd_b)
 );
