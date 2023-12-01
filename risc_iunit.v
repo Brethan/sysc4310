@@ -1,3 +1,8 @@
+/*
+ * Module: RISC Instruction Unit
+ * Student Name: Ethan Bradley
+ * Student Number: 101158848
+ */
 // behavioral iunit
 
 // this unit will receive instruction from memory
@@ -11,11 +16,6 @@ module risc_iunit (clk, rst_n, instruction, pc, ir);
 
 	output reg [4:0] pc = 5'b0;
 	output reg [12:0] ir;
-  
-  
-  
-  
-
   
   parameter nop = 13'h0000; // this will be used as No operation instruction
 

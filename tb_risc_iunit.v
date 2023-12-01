@@ -1,4 +1,8 @@
-
+/*
+ * Module: RISC Instruction Unit Test Bench
+ * Student Name: Ethan Bradley
+ * Student Number: 101158848
+ */
 //test bench for iunit
 module risc_iunit_tb;
 //Fillout1: define the signals

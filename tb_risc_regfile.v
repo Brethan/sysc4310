@@ -1,26 +1,34 @@
 
+/*
+ * Module: RISC Register File Test Bench
+ * Student Name: Ethan Bradley
+ * Student Number: 101158848
+ */
+
 //------------------------------------------------------
 //*************************************************************
 //test bench for regfile
 module risc_regfile_tb;
 	//fillout1: define the required sinals for inputs and outputs here
-	
 
+	reg clk, rst_n = 1'b1, reg_wr_vld, load_op;
+	reg [7:0] rslt;
+	reg [2:0] dst;
+	reg [2:0] opnda_addr;
+	reg [2:0] opndb_addr;
+	reg [7:0] dmdataout;
+
+	wire [7:0] oprnd_a;
+	wire [7:0] oprnd_b;
 	
-	//fillout 2
-	// go back to your register file module, and in rest section, reset
-	// the registers with the following values
-	/*
-	  regfile0 = 8'h00;
-	  regfile1 = 8'h22;
-	  regfile2 = 8'h44;
-	  regfile3 = 8'h66;
-	  regfile4 = 8'h88;
-	  regfile5 = 8'haa;
-	  regfile6 = 8'hcc;
-	  regfile7 = 8'hff;
-	  */
-	
+	//fillout 3: instantiate the behavioral module into the test bench
+	risc_regfile inst1 (
+		.clk(clk), .rst_n(rst_n), .reg_wr_vld(reg_wr_vld),
+		.load_op(load_op), .rslt(rslt), .dst(dst), .opnda_addr(opnda_addr),
+		.opndb_addr(opndb_addr), .dmdataout(dmdataout), .oprnd_a(oprnd_a),
+		.oprnd_b(oprnd_b)
+	);
+
 	//define clock
 	initial
 	begin
@@ -37,25 +45,25 @@ module risc_regfile_tb;
 	
 	
 	//Outputting proper opernads: reg0 and reg1------------------------
-	 opnda_addr = 3'b000 ;  //regfile0
+	 opnda_addr = 3'b000 ;  // regfile0
 	 opndb_addr = 3'b001 ;  // regfile1
 	 @ (negedge clk)
 	 $display ("oprnd_a = %h, oprnd_b = %h", oprnd_a, oprnd_b);
 	 
 	 //Outputting proper opernads: reg2 and reg3------------------------
-	 opnda_addr = 3'b010 ;  //regfile2
+	 opnda_addr = 3'b010 ;  // regfile2
 	 opndb_addr = 3'b011 ;  // regfile3
 	 @ (negedge clk)
 	 $display ("oprnd_a = %h, oprnd_b = %h", oprnd_a, oprnd_b);
 	 
 	 //Outputting proper opernads: reg4 and reg5------------------------
-	 opnda_addr = 3'b100 ;  //regfile4
+	 opnda_addr = 3'b100 ;  // regfile4
 	 opndb_addr = 3'b101 ;  // regfile5
 	 @ (negedge clk)
 	 $display ("oprnd_a = %h, oprnd_b = %h", oprnd_a, oprnd_b);
 	 
 	  //Outputting proper opernads: reg6 and reg7------------------------
-	 opnda_addr = 3'b110 ;  //regfile6
+	 opnda_addr = 3'b110 ;  // regfile6
 	 opndb_addr = 3'b111 ;  // regfile7
 	 @ (negedge clk)
 	 $display ("oprnd_a = %h, oprnd_b = %h", oprnd_a, oprnd_b);
@@ -67,7 +75,7 @@ module risc_regfile_tb;
 	rslt = 8'h00; //8'h00 ---> regfile0
 	dmdataout = 8'h00;
 	@ (negedge clk)
-	$display ("rslt = %h, regfile0 = %h", rslt, regfile0);
+	$display ("rslt = %h, regfile0 = %h", rslt, inst1.regfile0);
 	
 	//regfile2 ---------------------------------------------------
 	dst = 3'b010; //regfile2 is dst
@@ -76,7 +84,7 @@ module risc_regfile_tb;
 	rslt = 8'h22; //8'h22 ---> regfile2
 	dmdataout = 8'h00;
 	@ (negedge clk)
-	$display ("rslt = %h, regfile2 = %h", rslt, regfile2);
+	$display ("rslt = %h, regfile2 = %h", rslt, inst1.regfile2);
 	
 	//regfile4 ---------------------------------------------------
 	dst = 3'b100; //regfile4 is dst
@@ -85,7 +93,7 @@ module risc_regfile_tb;
 	rslt = 8'h44; //8'h44 ---> regfile4
 	dmdataout = 8'h00;
 	@ (negedge clk)
-	$display ("rslt = %h, regfile4 = %h", rslt, regfile4);
+	$display ("rslt = %h, regfile4 = %h", rslt, inst1.regfile4);
 	
 	//regfile6 ---------------------------------------------------
 	dst = 3'b110; //regfile6 is dst
@@ -94,7 +102,7 @@ module risc_regfile_tb;
 	rslt = 8'h66; //8'h66 ---> regfile6
 	dmdataout = 8'h00;
 	@ (negedge clk)
-	$display ("rslt = %h, regfile6 = %h", rslt, regfile6);
+	$display ("rslt = %h, regfile6 = %h", rslt, inst1.regfile6);
 	
 	//regfile1 ---------------------------------------------------
 	dst = 3'b001; //regfile1 is dst
@@ -104,7 +112,7 @@ module risc_regfile_tb;
 	dmdataout = 8'h11; //8'h11 ---> regfile1
 	@ (negedge clk)
 	$display ("dmdataout = %h, regfile1 = %h",
-	dmdataout, regfile1);
+	dmdataout, inst1.regfile1);
 	
 	//regfile3 ---------------------------------------------------
 	dst = 3'b011; //regfile3 is dst
@@ -114,7 +122,7 @@ module risc_regfile_tb;
 	dmdataout = 8'h33; //8'h33 ---> regfile3
 	@ (negedge clk)
 	$display ("dmdataout = %h, regfile3 = %h",
-	dmdataout, regfile3);
+	dmdataout, inst1.regfile3);
 	
 	//regfile5 ---------------------------------------------------
 	dst = 3'b101; //regfile5 is dst
@@ -124,7 +132,7 @@ module risc_regfile_tb;
 	dmdataout = 8'h55; //8'h55 ---> regfile5
 	@ (negedge clk)
 	$display ("dmdataout = %h, regfile5 = %h",
-	dmdataout, regfile5);
+	dmdataout, inst1.regfile5);
 	
 	//regfile7 ---------------------------------------------------
 	dst = 3'b111; //regfile7 is dst
@@ -134,7 +142,7 @@ module risc_regfile_tb;
 	dmdataout = 8'h77; //8'h77 ---> regfile7
 	@ (negedge clk)
 	$display ("dmdataout = %h, regfile7 = %h",
-	dmdataout, regfile7);
+	dmdataout, inst1.regfile7);
 	
 	//regfile0 -------------------------------------------------
 	dst = 3'b000; //regfile0 is dst
@@ -143,7 +151,7 @@ module risc_regfile_tb;
 	rslt = 8'h00; //8'h00 ---> regfile0
 	dmdataout = 8'h00;
 	@ (negedge clk)
-	$display ("rslt = %h, regfile0 = %h", rslt, regfile0);
+	$display ("rslt = %h, regfile0 = %h", rslt, inst1.regfile0);
 	
 	
 	
@@ -151,10 +159,5 @@ module risc_regfile_tb;
 	//$stop;
 	end
 	
-	//fillout 3: instantiate the behavioral module into the test bench
-	risc_regfile inst1 (
 
-
-
-	);
 endmodule
