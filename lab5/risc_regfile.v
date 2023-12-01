@@ -18,6 +18,7 @@ module risc_regfile (
 	input wire reg_wr_vld, 
 	input wire load_op,
 	input wire [7:0] rslt,
+	input wire [2:0] dst_o;
 	
 	// From Decode Unit
     input wire [2:0] dst,
@@ -58,18 +59,21 @@ module risc_regfile (
 	wire regfile6_enbl;
 	wire regfile7_enbl;
 
+	wire [2:0] dstin;
+	assign dstin = load_op ? dst : dst_o;
+
 	// fillout4: enables for each register file
 	// enable signals will be activated if the destination code addresses 
 	// that perticular register AND if write valid signal is activated
 	// complete this section for the rest of enable signals
-	assign regfile0_enbl = (dst == 3'h0) & reg_wr_vld;
-	assign regfile1_enbl = (dst == 3'h1) & reg_wr_vld;
-	assign regfile2_enbl = (dst == 3'h2) & reg_wr_vld;
-	assign regfile3_enbl = (dst == 3'h3) & reg_wr_vld;
-	assign regfile4_enbl = (dst == 3'h4) & reg_wr_vld;
-	assign regfile5_enbl = (dst == 3'h5) & reg_wr_vld;
-	assign regfile6_enbl = (dst == 3'h6) & reg_wr_vld;
-	assign regfile7_enbl = (dst == 3'h7) & reg_wr_vld;
+	assign regfile0_enbl = (dstin == 3'h0) & reg_wr_vld;
+	assign regfile1_enbl = (dstin == 3'h1) & reg_wr_vld;
+	assign regfile2_enbl = (dstin == 3'h2) & reg_wr_vld;
+	assign regfile3_enbl = (dstin == 3'h3) & reg_wr_vld;
+	assign regfile4_enbl = (dstin == 3'h4) & reg_wr_vld;
+	assign regfile5_enbl = (dstin == 3'h5) & reg_wr_vld;
+	assign regfile6_enbl = (dstin == 3'h6) & reg_wr_vld;
+	assign regfile7_enbl = (dstin == 3'h7) & reg_wr_vld;
 
     //define reg_mux outputs from the eight 2:1 muxs
     // the input data is calculated based on wether the instruction is  a load
